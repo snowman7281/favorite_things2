@@ -1,7 +1,7 @@
 class Item
   @@list = []
-  attr_reader :id, :rank
-  attr_accessor :name
+  attr_reader :id
+  attr_accessor :name, :rank
 
   def initialize(name, rank)
     @name = name
@@ -31,19 +31,31 @@ class Item
   end
 
   def self.sort()
-  n = @@list.length
-  loop do
-    swapped = false
-    (n-1).times do |i|
-      if @@list[i].rank > @@list[i+1].rank
-        @@list[i], @@list[i+1] = @@list[i+1], @@list[i]
-        swapped = true
+    n = @@list.length
+    loop do
+      swapped = false
+      (n-1).times do |i|
+        if @@list[i].rank > @@list[i+1].rank
+          @@list[i], @@list[i+1] = @@list[i+1], @@list[i]
+          swapped = true
+        end
       end
+      break if not swapped
     end
-
-    break if not swapped
+    @@list
   end
 
-  @@list
-end
+  # def self.duplicates()
+  #   @@list.push(self)
+  #   @@list == @@list.uniq
+  #   return "Sorry the rank or item name has already been entered"
+  # end
+
+  def duplicates()
+    @@list.each do |item|
+      if self.name == item.name && self.rank == item.rank
+        return "Sorry the rank or item name has already been entered"
+      end
+    end
+  end
 end

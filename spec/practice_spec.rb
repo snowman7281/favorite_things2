@@ -1,5 +1,5 @@
-require('rspec')
 require('practice')
+require('rspec')
 
 describe("Item") do
   before() do
@@ -69,4 +69,15 @@ describe("Item") do
       expect(test_item_list[3].rank).to(eq(4))
     end
   end
+
+  # describe(".duplicates") do
+  #   it("clears all items from the list") do
+  #     item = Item.new("tacos", 3)
+  #     item.save()
+  #     item = Item.new("tacos", 3)
+  #     item.save()
+  #     Item.clear()
+  #     expect(Item.all()).to(eq([]))
+  #   end
+  # end
 end
